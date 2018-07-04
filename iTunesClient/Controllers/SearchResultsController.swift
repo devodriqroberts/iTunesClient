@@ -28,8 +28,10 @@ class SearchResultsController: UITableViewController {
         //assign self(searchResultsController) as results updater
         searchController.searchResultsUpdater = self
         
-        // assign new data source as data source controller
+        // assign new data source as data source controller (SearchResultsDataSource)
         tableView.dataSource = dataSource
+        
+        definesPresentationContext = true
     }
     
      @objc func dismissSearchResultsController() {

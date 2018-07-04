@@ -10,19 +10,23 @@ import UIKit
 
 class AlbumListController: UITableViewController {
     
+    
     // create static constant value for custom cell height
     private struct Constants {
         static let AlbumCellHeight: CGFloat = 80
     }
 
+    // stored property for Artist --
+    var artist: Artist!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = artist.name
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  
     }
     
     //MARK: - Table View Delegate

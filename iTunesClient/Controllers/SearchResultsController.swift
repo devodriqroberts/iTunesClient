@@ -11,6 +11,9 @@ import UIKit
 class SearchResultsController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    // create an instance of data source controller-- assign to constant "dataSource"
+    let dataSource = SearchResultsDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +24,12 @@ class SearchResultsController: UITableViewController {
         // Create searchbar in searchResultsController
         tableView.tableHeaderView = searchController.searchBar
         searchController.dimsBackgroundDuringPresentation = false
+        
         //assign self(searchResultsController) as results updater
         searchController.searchResultsUpdater = self
+        
+        // assign new data source as data source controller
+        tableView.dataSource = dataSource
     }
     
      @objc func dismissSearchResultsController() {
@@ -32,7 +39,8 @@ class SearchResultsController: UITableViewController {
 
 extension SearchResultsController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text!)
+        dataSource.update(withArtist: [Stub.artist])
+        tableView.reloadData()
     }
 }
 

@@ -18,6 +18,7 @@
 		253C732220ED172400BC1DD8 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253C732120ED172400BC1DD8 /* Song.swift */; };
 		253C732420ED1ACB00BC1DD8 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253C732320ED1ACB00BC1DD8 /* Stub.swift */; };
 		253C732620ED238C00BC1DD8 /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253C732520ED238C00BC1DD8 /* SearchResultsController.swift */; };
+		253C732920ED2AC000BC1DD8 /* SearchResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253C732820ED2AC000BC1DD8 /* SearchResultsDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		253C732120ED172400BC1DD8 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		253C732320ED1ACB00BC1DD8 /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		253C732520ED238C00BC1DD8 /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		253C732820ED2AC000BC1DD8 /* SearchResultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		253C730520ED100A00BC1DD8 /* iTunesClient */ = {
 			isa = PBXGroup;
 			children = (
+				253C732720ED2A7C00BC1DD8 /* DataSources */,
 				253C731A20ED104200BC1DD8 /* Controllers */,
 				253C731920ED103900BC1DD8 /* Views */,
 				253C731820ED102A00BC1DD8 /* Models */,
@@ -104,6 +107,14 @@
 				253C732520ED238C00BC1DD8 /* SearchResultsController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		253C732720ED2A7C00BC1DD8 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				253C732820ED2AC000BC1DD8 /* SearchResultsDataSource.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +195,7 @@
 				253C732620ED238C00BC1DD8 /* SearchResultsController.swift in Sources */,
 				253C731E20ED126800BC1DD8 /* Genre.swift in Sources */,
 				253C732020ED134000BC1DD8 /* Album.swift in Sources */,
+				253C732920ED2AC000BC1DD8 /* SearchResultsDataSource.swift in Sources */,
 				253C732420ED1ACB00BC1DD8 /* Stub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

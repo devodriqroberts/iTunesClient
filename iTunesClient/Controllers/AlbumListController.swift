@@ -19,9 +19,15 @@ class AlbumListController: UITableViewController {
     // stored property for Artist --
     var artist: Artist!
     
+    lazy var dataSource: AlbumListDataSource = {
+       return AlbumListDataSource(albums: self.artist.albums)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = artist.name
+        
+        tableView.dataSource = dataSource
     }
 
     override func didReceiveMemoryWarning() {

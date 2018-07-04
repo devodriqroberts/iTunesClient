@@ -9,6 +9,7 @@
 import Foundation
 
 struct Stub {
+    
     static var artist: Artist {
         return Artist(id: 62374520, name: "Gucci Mane", primaryGenre: .hipHopRap, album: [])
     }

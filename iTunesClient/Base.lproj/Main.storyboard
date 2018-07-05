@@ -20,7 +20,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H5e-aV-3MQ">
-                                <rect key="frame" x="139" y="318" width="97" height="30"/>
+                                <rect key="frame" x="93.5" y="309.5" width="188" height="47"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <state key="normal" title="Search iTunes"/>
                                 <connections>
                                     <segue destination="1JJ-5N-M4L" kind="presentation" id="GUI-u8-2BK"/>
@@ -142,12 +143,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C0s-WG-U0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="840"/>
+            <point key="canvasLocation" x="1671" y="947"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Album Detail Controller-->
         <scene sceneID="h5q-Qe-v8u">
             <objects>
-                <tableViewController id="jw3-Yy-uy6" sceneMemberID="viewController">
+                <tableViewController id="jw3-Yy-uy6" customClass="AlbumDetailController" customModule="iTunesClient" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="IdE-Kw-Nqn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +198,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" id="vgY-oy-6gi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongCell" id="vgY-oy-6gi" customClass="SongCell" customModule="iTunesClient" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vgY-oy-6gi" id="vNf-CU-PCG">
@@ -219,11 +220,17 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="4Q1-V4-mZf" firstAttribute="leading" secondItem="vNf-CU-PCG" secondAttribute="leadingMargin" constant="8" id="3LI-UG-8FS"/>
+                                        <constraint firstItem="ws5-6h-DJ8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vNf-CU-PCG" secondAttribute="leadingMargin" id="d8p-ag-Io1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ws5-6h-DJ8" secondAttribute="trailing" constant="-8" id="dAt-R1-b60"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Q1-V4-mZf" secondAttribute="trailingMargin" id="dVQ-SI-Fj3"/>
                                         <constraint firstItem="ws5-6h-DJ8" firstAttribute="centerY" secondItem="vNf-CU-PCG" secondAttribute="centerY" id="g6W-2x-9MT"/>
                                         <constraint firstItem="4Q1-V4-mZf" firstAttribute="centerY" secondItem="vNf-CU-PCG" secondAttribute="centerY" id="haz-XU-tBb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="songLengthLabel" destination="ws5-6h-DJ8" id="7Z1-vx-cFL"/>
+                                    <outlet property="songTitleLabel" destination="4Q1-V4-mZf" id="niX-Yf-xwp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -231,10 +238,16 @@
                             <outlet property="delegate" destination="jw3-Yy-uy6" id="WkR-7b-OG0"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="albumGenreLabel" destination="72L-zU-jiC" id="A43-6Y-EBd"/>
+                        <outlet property="albumReleaseDateLabel" destination="Tjm-21-vu3" id="pqb-qh-YeM"/>
+                        <outlet property="albumTitleLabel" destination="ICQ-FH-N41" id="rmz-QB-Jaz"/>
+                        <outlet property="artworkView" destination="mMi-xf-Xhu" id="JqL-wl-Zbi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16z-bP-Xgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="1557"/>
+            <point key="canvasLocation" x="1671" y="1780"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="f8C-MG-Dd1">

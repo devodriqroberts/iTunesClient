@@ -45,6 +45,7 @@ class SearchResultsController: UITableViewController {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let artist = dataSource.artist(at: indexPath)
                 artist.albums = Stub.albums
+    
                 
                 let albumListController = segue.destination as! AlbumListController
                 albumListController.artist = artist

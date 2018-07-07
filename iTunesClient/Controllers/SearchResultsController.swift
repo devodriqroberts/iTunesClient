@@ -14,6 +14,7 @@ class SearchResultsController: UITableViewController {
     
     // create an instance of data source controller-- assign to constant "dataSource"
     let dataSource = SearchResultsDataSource()
+    let client = ItunesAPIClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +57,10 @@ class SearchResultsController: UITableViewController {
 
 extension SearchResultsController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        dataSource.update(withArtist: [Stub.artist])
-        tableView.reloadData()
+        client.searchForArtists(withTerm: searchController.searchBar.text!) { [weak self] artists, error in
+            self?.dataSource.update(withArtist: artists)
+            self?.tableView.reloadData()
+        }
     }
 }
 

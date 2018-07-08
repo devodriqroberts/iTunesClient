@@ -10,12 +10,18 @@ import UIKit
 
 class AlbumDetailController: UITableViewController {
     
-    var album: Album?
+    var album: Album? {
+        didSet {
+            if let album = album {
+                configure(with: album)
+                dataSource.update(with: album.songs)
+                tableView.reloadData()
+            }
+        }
+    }
     
-    lazy var dataSource: AlbumDetailDataSource = {
-        return AlbumDetailDataSource(songs: self.album!.songs)
-    }()
-
+    var dataSource = AlbumDetailDataSource(songs: [])
+    
     @IBOutlet weak var artworkView: UIImageView!
     @IBOutlet weak var albumTitleLabel: UILabel!
     @IBOutlet weak var albumGenreLabel: UILabel!
@@ -24,20 +30,20 @@ class AlbumDetailController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard  let album = album else { return }
-        configure(withAlbum: album)
+        if let album = album {
+            configure(with: album)
+        }
         
         tableView.dataSource = dataSource
     }
     
-    func configure(withAlbum album: Album) {
-       let viewModel = AlbumDetailViewModel(album: album)
+    func configure(with album: Album) {
+        let viewModel = AlbumDetailViewModel(album: album)
         
-        // Add implementation for artwork view
+        // Add implementation for artworkView
         albumTitleLabel.text = viewModel.title
         albumGenreLabel.text = viewModel.genre
         albumReleaseDateLabel.text = viewModel.releaseDate
-        
     }
 }
 

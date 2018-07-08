@@ -13,21 +13,88 @@ class ItunesAPIClient {
     
     func searchForArtists(withTerm term: String, completion: @escaping ([Artist], ItunesError?) -> Void) {
         let endpoint = Itunes.search(term: term, media: .music(entity: .musicArtist, attribute: .artistTerm))
+     
+        performRequest(with: endpoint) { results, error in
+            guard let results = results else {
+                completion( [], error)
+                return
+            }
+            
+            let artist = results.compactMap { Artist(json: $0) }
+                completion(artist, nil)
+        }
+    }
+    
+    func lookupArtist(withId id: Int, completion: @escaping (Artist?, ItunesError?) -> Void) {
+        let endpoint = Itunes.lookup(id: id, entity: MusicEntity.album)
         
+        performRequest(with: endpoint) { results, error in
+            guard let results = results else {
+                completion( nil, error)
+                return
+            }
+            
+            guard let artistInfo = results.first else {
+                completion(nil, .jsonParsingFailure(message: "Results does not contain artist info"))
+                return
+            }
+            
+            guard let artist = Artist(json: artistInfo) else {
+                completion(nil, .jsonParsingFailure(message: "Could not parse artist information"))
+                return
+            }
+            
+            let albumResults = results[1..<results.count]
+            let album = albumResults.compactMap {Album(json: $0)}
+            
+            artist.albums = album
+            completion(artist, nil)
+        }
+    }
+    
+    func lookupAlbum(withId id: Int, completion: @escaping (Album?, ItunesError?) -> Void) {
+        let endpoint = Itunes.lookup(id: id, entity: MusicEntity.song)
+        
+        performRequest(with: endpoint) { results, error in
+            guard let results = results else {
+                completion( nil, error)
+                return
+            }
+            
+            guard let albumInfo = results.first else {
+                completion( nil, .jsonParsingFailure(message: " No album info was found"))
+                return
+            }
+            
+            guard let album = Album(json: albumInfo) else {
+                completion(nil, .jsonParsingFailure(message: " Error parsing album info"))
+                return
+            }
+            
+            let songResults = results[1..<results.count]
+            let songs = songResults.compactMap { Song(json: $0) }
+            
+            album.songs = songs
+            completion(album, nil)
+        }
+    }
+    typealias Results = [[String:Any]]
+    
+    private func performRequest(with endpoint: EndPoint, completion: @escaping (Results?, ItunesError?) -> Void) {
         let task = downloader.jsonTask(with: endpoint.request) {json, error in
             DispatchQueue.main.async {
                 guard let json = json else {
-                    completion([], error)
+                    completion(nil, error)
                     return
                 }
                 
                 guard let results = json["results"] as? [[String:Any]] else {
-                    completion([], .jsonParsingFailure(message: "JSON data does not contain results"))
+                    completion(nil, .jsonParsingFailure(message: "JSON data does not contain results"))
                     return
                 }
                 
                 let artist = results.compactMap {Artist(json: $0)}
-                completion(artist, nil)
+                completion(results, nil)
             }
         }
         task.resume()

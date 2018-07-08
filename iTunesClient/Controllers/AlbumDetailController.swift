@@ -10,6 +10,8 @@ import UIKit
 
 class AlbumDetailController: UITableViewController {
     
+    var artworkImage: UIImage?
+    
     var album: Album? {
         didSet {
             if let album = album {
@@ -39,6 +41,7 @@ class AlbumDetailController: UITableViewController {
     
     func configure(with album: Album) {
         let viewModel = AlbumDetailViewModel(album: album)
+        artworkView.image = artworkImage
         
         // Add implementation for artworkView
         albumTitleLabel.text = viewModel.title
